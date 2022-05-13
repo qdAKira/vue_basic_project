@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <h1>HELLO {{name.toUpperCase()}},{{1+1}}</h1>
+  </div>
+  <a href="https://wwww.baidu.com">111111</a>
+ 
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    //阻止vue在启动时生成生产提示
+    new Vue({
+      el:'#root',
+      data:{
+        name:'sws'
+      }
+    })
+  </script>
+</body>
+</html>
