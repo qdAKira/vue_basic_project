@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <!-- 引入vue -->
+  <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <!-- 1.el有2种写法
+        new Vue时候配置el属性
+        先创建Vue实例，随后再通过vm.$mount(’#root’)指定el的值
+
+   2. data有2种写法
+        对象式
+        函数式 
+        在组件中，data必须使用函数式
+    -->
+
+
+  <!-- 准备好一个容器 -->
+  <div id="root">
+    <h1>你好{{name}}</h1>
+  </div>
+  
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    //阻止vue在启动时生成生产提示
+    // new Vue时候配置el属性
+    // new Vue({
+    //   el:'#root',
+    //   data:{
+    //     // 对象式
+    //     name:'jack'
+    //   }
+    // })
+    const vm = new Vue({
+      // data函数式 
+      data(){
+        return{
+          name:'jack'
+        }
+      }
+      
+    })
+    vm.$mount('#root')
+
+  </script>
+</body>
+</html>
