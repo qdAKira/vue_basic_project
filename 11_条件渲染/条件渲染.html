@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <!-- 引入vue -->
+  <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+  <!-- 准备好一个容器 -->
+  <!-- 
+  v-show
+    写法：v-show=“表达式”
+    适用于：切换频率较高的场景
+    特点：不展示的DOM元素未被移除，仅仅是使用样式隐藏掉(display:none)
+    备注：使用v-if的时，元素可能无法获取到，而使用v-show一定可以获取到
+    
+    v-if 是实打实地改变dom元素，v-show 是隐藏或显示dom元素
+
+  v-if写法：
+    (1).v-if=“表达式”
+    (2).v-else-if=“表达式”
+    (3).v-else=“表达式”
+    适用于：切换频率较低的场景
+    特点：不展示的DOM元素直接被移除
+    注意：v-if可以和:v-else-if、v-else一起使用，但要求结构不能被“打断”
+
+  
+   -->
+
+  <div id="root">
+    <!-- v-show使用 -->
+    <!-- <h2 v-show="false">学过{{name}}框架</h2> -->
+    <!-- 该值可以用语句表示 -->
+    <!-- <h2 v-show="1===1">学过{{name}}框架</h2> -->
+    <!-- v-if做条件渲染 -->
+    <!-- <h2 v-if="true">{{age}}</h2>
+    <h2 v-if="1===1">{{age}}</h2>
+     -->
+    <h2>当前值为：{{n}}</h2>
+    <Button @click="n++">点我n+1</Button>
+    <h2 v-if="n===1">react</h2>
+    <h2 v-else-if="n===2">vue2</h2>
+    <h2 v-if="n===3">vue3</h2>
+
+    <!-- v-if与template的配合使用 -->
+    <!-- 就不需要写好多个判断，写一个就行 -->
+    <!-- 这里的思想就像事件代理的使用 -->
+    <template v-if="n===1">
+     <h2>你好</h2>
+     <h2>你好1</h2>
+     <h2>你好2</h2>
+    </template>
+  </div>
+  
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    //阻止vue在启动时生成生产提示
+  new Vue({
+    el:'#root',
+    data:{
+      n:'0'
+    }
+  })
+  </script>
+</body>
+</html>
