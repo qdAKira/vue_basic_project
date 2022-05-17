@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <!-- 引入vue -->
+  <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    Vue.set 的使用
+
+        Vue.set(target，propertyName/index，value) 或
+
+        vm.$set(target，propertyName/index，value)
+
+        用法：
+
+        向响应式对象中添加一个 property，并确保这个新 property 同样是响应式的，且触发视图更新。
+        它必须用于向响应式对象上添加新 property，因为 Vue 无法探测普通的新增 property 
+        (比如 vm.myObject.newProperty = 'hi')
+ -->
+
+  <!-- 准备好一个容器 -->
+  <div id="root">
+    <h2>学生信息</h2>
+    <Button @click="updata">点我添加信息</Button>
+    <h2>姓名:{{students.name}}</h2>
+    <h2 v-if="students.sex">性别:{{students.sex}}</h2>
+    <h2>爱好</h2>
+    <ul>
+      <l1 v-for="(h,index) in students.hobby":key="index">
+          {{h}}
+      </l1>
+    </ul>
+    <h2>py</h2>
+    <ul>
+      <li v-for="(f,index) in friend":key="index">
+        {{f.name}}-{{f.age}}
+      </li>
+    </ul>
+  </div>
+  
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    //阻止vue在启动时生成生产提示
+    const vm = new Vue({
+      el:'#root',
+      data:{
+          students:{
+            name:'jj',
+            hobby:['学习','打游戏','xx'],
+        },
+        
+        friend:[
+            {name:'jerry',age:35},
+            {name:'tony',age:36}
+          ] 
+       
+      },
+      methods: {
+        updata(){
+          // Vue.set(this.students,'sex','男')
+          this.$set(this.students,'sex','男')
+        }
+      }
+
+    })
+  </script>
+</body>
+</html>

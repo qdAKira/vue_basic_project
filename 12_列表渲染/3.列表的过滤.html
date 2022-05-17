@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列表过滤</title>
+  <!-- 引入vue -->
+  <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+  <!-- 准备好一个容器 -->
+  <div id="root">
+    <h2>人员列表信息</h2>
+    <input type="text" placeholder="请输入名字"v-model="keyword">
+    <ul>
+      <li v-for="(p,id) in filPersons":key="id">
+        {{p.name}}-{{p.age}}-{{p.sex}}
+      </li>
+    </ul>
+  </div>
+  
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    //阻止vue在启动时生成生产提示
+    new Vue({
+      el:'#root',
+      data:{
+        keyword:'',
+        persons:[
+          {id:'001',name:'周冬雨',age:'28',sex:'女'},
+          {id:'002',name:'周杰伦',age:'25',sex:'男'},
+          {id:'003',name:'马冬梅',age:'31',sex:'女'},
+          {id:'004',name:'温兆伦',age:'30',sex:'男'}
+        ]
+      },
+      //#region 
+      //wacth实现
+      /*watch:{
+        // keyword(val){
+        //   this.filPersons = this.persons.filter((p)=>{
+        //     return p.name.indexOf(val) !== -1
+        //   })
+        // }
+        keyword:{
+          immediate:true,
+          handler(val){
+            this.filPersons = this.persons.filter((p)=>{
+            return p.name.indexOf(val) !== -1
+          })
+        }
+      }
+    }*/
+    //#endregion
+    //computed实现
+    computed:{
+      filPersons(){
+        return this.persons.filter((p)=>{
+            return p.name.indexOf(this.keyword) !== -1
+          })
+      }
+    }
+  })
+  </script>
+</body>
+</html>
