@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <!-- 引入vue -->
+  <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+  <!-- 准备好一个容器 -->
+  <!-- 需求1：定义一个v-big指令，和v-text功能类似，但会把绑定的数值放大10倍。 -->
+  <div id="root">
+    <h2>当前值是：<span v-text="n"></span></h2>
+    <h2>放大10倍值是：<span v-big="n"></span></h2>
+    <button @click="n++">点我n+1</button>
+  </div>
+  
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    //阻止vue在启动时生成生产提示
+    //全局指令(函数形式)
+    Vue.directive('big',(element,binding)=>{
+      element.innerText = binding.value * 10
+    }
+      
+    )
+    new Vue({
+      el:'#root',
+      data:{
+        n:0
+      }
+      //局部指令
+      // directives:{
+      //    // big函数何时会被调用？1.指令与元素成功绑定时（一上来）。2.指令所在的模板被重新解析时。
+      //   /* 'big-number'(element,binding){
+			// 		// console.log('big')
+			// 		element.innerText = binding.value * 10
+			// 	}, */
+      //   big(element,binding){
+      //     console.log('big',this);//注意此处的this是window
+      //     element.innerText = binding.value*10
+      //   }
+      // }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <!-- 引入vue -->
+  <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+  <!-- 准备好一个容器 -->
+  <!-- 需求2：定义一个v-fbind指令，和v-bind功能类似，但可以让其所绑定的input元素默认获取焦点。 -->
+  <!-- 
+    配置对象中常用的3个回调：
+
+      bind：指令与元素成功绑定时调用。
+      inserted：指令所在元素被插入页面时调用。
+      update：指令所在模板结构被重新解析时调用。
+ -->
+  <div id="root">
+      <input type="text"v-bind:value="test1">
+      <input type="text"v-fbind:value="test2">
+  </div>
+  
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    //阻止vue在启动时生成生产提示
+    
+   new Vue({
+     el:'#root',
+     data:{
+      test1:'1',
+      test2:'2'
+     },
+     directives:{
+       fbind:{
+          //指令与元素成功绑定时（一上来）
+          bind(ele,binding){
+            ele.value = binding.value
+          },
+          //指令所在元素被插入页面时
+          inserted(element,binding){
+            element.focus()
+          },
+          //指令所在的模板被重新解析时
+          updata(element,binding){
+            element.value = binding.value
+          }
+       }
+     }
+   }) 
+  </script>
+</body>
+</html>

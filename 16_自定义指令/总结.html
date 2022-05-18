@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <!-- 引入vue -->
+  <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+  <!-- 准备好一个容器 -->
+  <!-- 
+    一。定义语法：
+        (1).局部指令：
+              new Vue({                               new Vue({
+                directives:{指令名：配置对象}     或     directives{指令名：回调函数}   
+              })                                          })
+         (2). 全局指令：
+              Vue.directive(指令名，配置对象)      或    Vue.directive(指令名，回调函数)                               
+    二。配置对象中常用的3个回调：
+
+      bind：指令与元素成功绑定时调用。
+      inserted：指令所在元素被插入页面时调用。
+      update：指令所在模板结构被重新解析时调用。
+
+    三。备注：
+            1.指令定义时不加v-,但使用时要加v-;
+            2.指令名如果是多个单词，要使用kebab-case命名方式，不要用cameCase命名
+     -->
+  <div id="root">
+    <input type="text" v-fbind:value="n">
+  </div>
+  
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    //阻止vue在启动时生成生产提示
+       //定义全局指令（对象形式）
+       Vue.directive('fbind', {
+        // 指令与元素成功绑定时（一上来）
+        bind(element, binding){
+            element.value = binding.value
+        },
+        // 指令所在元素被插入页面时
+        inserted(element, binding){
+            element.focus()
+        },
+        // 指令所在的模板被重新解析时
+        update(element, binding){
+            element.value = binding.value
+        }
+    })
+    
+    new Vue({
+        el:'#root',
+        data:{
+            name: '尚硅谷',
+            n: 1
+        }
+    })
+
+  </script>
+</body>
+</html>
