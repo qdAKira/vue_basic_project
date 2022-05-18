@@ -51,12 +51,13 @@
   <div id="root">
     <h2>学生信息</h2>
 
-    <Button>年龄+1岁</Button><br/>
-    <Button>添加性别属性，默认值：男</Button><br/>
-    <Button>在列表首位添加一个朋友</Button><br/>
-    <Button>修改第一个朋友的名字为：张三</Button><br/>
-    <Button>年龄+1岁</Button><br/>
-    <Button>年龄+1岁</Button><br/>
+    <Button @click="student.age++">年龄+1岁</Button><br/>
+    <Button @click="addSex">添加性别属性，默认值：男</Button><br/>
+    <Button @click="student.sex = '未知'">修改性别</Button><br/>
+    <Button @click="addFriend">在列表首位添加一个朋友</Button><br/>
+    <Button @click="updataFirstFriend">修改第一个朋友的名字为：张三</Button><br/>
+    <Button @click="addHobby">添加一个爱好</Button><br/>
+    <Button @click="updataFirstHobby">修改第一个爱好为：开车</Button><br/>
     
     <h2>姓名:{{student.name}}</h2>
     <h2>年龄：{{student.age}}</h2>
@@ -83,10 +84,7 @@
       data:{
           student:{
             name:'jj',
-          age:{
-            rAge:40,
-            sAge:18
-          }
+          age:18
         },
         hobby:['学习','打游戏','xx'],
         friend:[
@@ -95,7 +93,24 @@
           ] 
        
       },
-    
+      methods:{
+        addSex(){
+          Vue.set(this.student,'sex','男')
+        },
+        addFriend(){
+          this.friend.unshift({name:'jack',age:70})
+        },
+        updataFirstFriend(){
+          this.friend[0].name = '张三'
+        },
+        addHobby(){
+          this.hobby.push('学习')
+        },
+        updataFirstHobby(){
+          // this.hobby.splice(0,1,'开车')
+          Vue.set(this.hobby,0,'开车')
+        }
+      }
 
     })
   </script>
