@@ -1,2 +1,8 @@
 import App from './App.vue'
-src
+new Vue({
+  el:'#root',
+  template:`
+    <App></App>
+  `,
+  comments:{App}
+})

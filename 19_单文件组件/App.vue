@@ -8,7 +8,7 @@
 <script>
 //引入组件
 import Student from './Student.vue'
-
+import School from './School.vue'
 export default {
   name:'App',
   comments:{
