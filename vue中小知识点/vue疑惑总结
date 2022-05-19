@@ -1,0 +1,31 @@
+1.事件处理：不需要return）
+
+    在模板中，使用v-on:xxx 或 @xxx 绑定事件，其中xxx是事件名
+    在vue实例中，配置在methods对象中，没有返回值。
+    举例：methods:{
+      stop(){
+
+      }
+    }
+
+2.计算属性(需要return)
+  在vue实例中，配置在computed对象中,有返回值
+    简写举例:fullName相当与getter
+    computed:{
+        fullName(){
+          console.log('get被调用');
+          return this.firstName+'-'+this.lastName
+        }
+      }
+
+ 3.监视属性（不需要return）  
+    watch:{
+        isHot:{
+          immediate:true,
+          // 初始化时让handler调用一下
+           // handler什么时候调用？当isHot发生改变时。
+          handler(newValue,oldValue){
+            console.log('isHot属性发生改变',newValue,oldValue);
+          }
+        }
+      }
